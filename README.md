@@ -12,7 +12,7 @@ The code uses the hostname 'eclm' so you'll either have to change the
 code to use something else (like localhost) or add the name 'eclm' to your hosts file.
 
 Once you have the hostname correct you can then open up your browser's
-development tools, monitor the network and load the page
+development tools, click the network tab and load the page
 eclm/test.html.
 
 Please note that the error does not show up immediately since the
