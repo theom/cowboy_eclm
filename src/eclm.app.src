@@ -1,0 +1,14 @@
+{application, eclm, [
+	{description, ""},
+	{vsn, "0.1.0"},
+	{id, "git"},
+	{modules, []},
+	{registered, [eclm_sup]},
+	{applications, [
+		kernel,
+		stdlib,
+        cowboy
+	]},
+	{mod, {eclm_app, []}},
+	{env, []}
+]}.
