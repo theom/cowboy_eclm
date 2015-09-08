@@ -1,7 +1,7 @@
 # eclm
 
 A repository meant to demonstrate the ERR_CONTENT_LENGTH_MISMATCH
-error in a browser when cowboy runs on FreeBSD and the browser tries
+error in a browser when Cowboy runs on FreeBSD and the browser tries
 to receive a file larger than 32KB (or more specifically, a file
 larger than the OS send buffer).
 
@@ -62,7 +62,8 @@ Then in another terminal:
 
 The result is that the client always receives all the data, both for
 small (a few bytes) and large (MB) data sets, which is contradictory
-to what the browser experiences where the buffer overflow is missing.
+to what the browser experiences when receiving data from Cowboy where
+the buffer overflow is missing.
 
 This probably doesn't accurately simulating the way Cowboy sends data
 but this at least gives us a hint that socket sends in Erlang on
