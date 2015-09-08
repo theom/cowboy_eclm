@@ -18,9 +18,13 @@ connect(Listen) ->
     spawn(fun() ->
                   connect(Listen)
           end),
+    gen_tcp:controlling_process(Socket, self()),
     recv_loop(Socket, 0),
+    timer:sleep(30000),
+    %gen_tcp:close(Socket).
+    gen_tcp:shutdown(Socket, read),
     io:format("Socket closed~n"),
-    gen_tcp:close(Socket).
+    ok.
 
 recv_loop(Socket, Count) -> 
     inet:setopts(Socket, [{active, once}]),
@@ -29,7 +33,13 @@ recv_loop(Socket, Count) ->
             io:format("~p ~p ~p~n", [inet:peername(Socket), erlang:localtime(), Data]),
             Byte_count = Count + byte_size(Data),
             io:format("Bytes received so far: ~p~n", [Byte_count]),
-            gen_tcp:send(Socket, binary:copy(<<"a">>, 1000 * 1000 + 1)),
+            %gen_tcp:send(Socket, binary:copy(<<"a">>, 1000 * 1000 + 1)),
+            %file:sendfile("./large_file", Socket),
+            {ok, FD} = file:open("./large_file", [raw, read, binary]),
+            case file:sendfile(FD, Socket, 0, 0, []) of
+                {error, Reason} ->
+                    io:format("Error sending file: ~p~n", [Reason])
+            end,
             %recv_loop(Socket, Byte_count);
             ok;
         {tcp_closed, Socket} ->

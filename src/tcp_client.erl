@@ -10,7 +10,7 @@ start() ->
 receive_loop(Socket, Acc) ->
     receive
         {tcp, Socket, Data} ->
-            io:format("Received: ~p~n", [Data]),
+            %io:format("Received: ~p~n", [Data]),
             Acc1 = binary:list_to_bin([Data | Acc]),
             io:format("Bytes received so far: ~p~n", [byte_size(Acc1)]),
             timer:sleep(100),
