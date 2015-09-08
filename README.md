@@ -19,8 +19,9 @@ your hosts file.
 
 Once you have the hostname correct you can open up your browser's
 development tools, click the network tab and load the page
-eclm/test.html. The load should fail just short of the last few tens
-of bytes in the file.
+http://eclm:1400/test.html (replace eclm with localhost if you changed
+the source). The load should fail just short of the last few tens of
+bytes in the file.
 
 Please note that the error does not show up immediately since the
 browser is waiting for more data from the server. After about 5-6
