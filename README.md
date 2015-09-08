@@ -36,7 +36,7 @@ To change it you can run:
 
     # sysctl net.inet.tcp.sendspace=32768
 
-# A TCP server and a slow client
+## A TCP server and a slow client
 
 To test this a bit further I created a simple TCP server that, once a
 client connects, sends a large stream of bytes to the client and then
